@@ -53,6 +53,12 @@ namespace DataAccess.Concrete.InMemory
             return _products;
         }
 
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId).ToList(); //where koşulu listedeki elemanları yeni bir liste haline getirip öyle döndürür.
+            //parantez içine istediğimiz kadar koşul ekleyebiliriz.
+        }
+
         public void Update(Product product)
         {
             //gönderdiğim ürün id sine sahip olan ürünü listeden bul
