@@ -2,6 +2,7 @@
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -27,15 +28,23 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
+            //LINQ-Language Integrated Query: aşağıdaki kodları kısaltır.
             //_products.Remove(product);  bu şekilde çalışmaz, silemez. ProductId kullanmak gerekiyor.
-            Product productToDelete=null;
+           /* Product productToDelete=null;
             foreach (var p in _products)
             {
                 if (product.ProductId == p.ProductId)
                 {
                     productToDelete = p;
                 }
-            }
+            }*/
+
+
+            Product productToDelete = _products.SingleOrDefault(p=>p.ProductId==product.ProductId); //lambda bir nevi foreach yapar. p ismi bize bağlı.
+            //SingleOrDefault metot ismidir. sorgu sonucunda iki eleman gelirse hata verir.
+            //Using system.linq yazmamız gerekiyor.
+            //products ı her p için tek tek dolaşır. => işareti lambda işareti tek tek dolaşır. 
+            //Linq kullanınca yukarıdaki kodlara gerek kalmıyor.
             _products.Remove(productToDelete);
         }
 
@@ -46,7 +55,12 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            //gönderdiğim ürün id sine sahip olan ürünü listeden bul
+            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            productToUpdate.ProductName = product.ProductName;
+            productToUpdate.CategoryId = product.CategoryId;
+            productToUpdate.UnitPrice = product.UnitPrice;
+            productToUpdate.UnitsInStock = product.UnitsInStock;
         }
     }
 }
