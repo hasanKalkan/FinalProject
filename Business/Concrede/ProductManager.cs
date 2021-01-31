@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -15,6 +16,7 @@ namespace Business.Concrede
         {
             _productDal = productDal;
         }
+
 
         public List<Product> GetAll()
         {
