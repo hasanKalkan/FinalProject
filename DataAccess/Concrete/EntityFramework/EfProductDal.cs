@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -13,12 +14,23 @@ namespace DataAccess.Concrete.EntityFramework
         //NuGet : kodların ortak kullanıldığı alan
         public void Add(Product entity)
         {
-            throw new NotImplementedException();
+            //Using: IDisposable pattern implementation of c#
+            using (NorthwindContext context=new NorthwindContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
         public void Delete(Product entity)
         {
-            throw new NotImplementedException();
+            using (NorthwindContext context = new NorthwindContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
         public Product Get()
@@ -33,7 +45,13 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+
+            using(NorthwindContext context = new NorthwindContext())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }
