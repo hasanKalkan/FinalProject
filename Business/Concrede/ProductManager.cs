@@ -21,9 +21,19 @@ namespace Business.Concrede
         public List<Product> GetAll()
         {
             //İş Kodları : bir iş sınıfı başka sınıfı new lemez
-            //yetkisi var mı_
+            //yetkisi var mı ?
 
             return _productDal.GetAll();
+        }
+
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p => p.CategoryId == id); 
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
         }
     }
 }
