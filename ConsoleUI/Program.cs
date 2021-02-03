@@ -13,10 +13,10 @@ namespace ConsoleUI
         {
           //  ProductManager productManager = new ProductManager(new InMemoryProductDal());
             ProductManager productManager = new ProductManager(new EfProductDal());
-          //  foreach (var product in productManager.GetAllByCategoryId(2))
-            foreach (var product in productManager.GetByUnitPrice(20,100))
+            foreach (var product in productManager.GetAllByCategoryId(2))
+            //foreach (var product in productManager.GetByUnitPrice(20,100))
                 {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName+ " "+product.CategoryId);
             }
         }
     }

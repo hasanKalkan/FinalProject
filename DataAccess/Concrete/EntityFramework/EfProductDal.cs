@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework
         public void Add(Product entity)
         {
             //Using: IDisposable pattern implementation of c#
-            using (NorthwindContext context=new NorthwindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -44,7 +44,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
         {
-            using (NorthwindContext context=new NorthwindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 return filter == null  //? ternary operatörü
                     ? context.Set<Product>().ToList()  //filtre null ise
@@ -55,7 +55,7 @@ namespace DataAccess.Concrete.EntityFramework
         public void Update(Product entity)
         {
 
-            using(NorthwindContext context = new NorthwindContext())
+            using (NorthwindContext context = new NorthwindContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;

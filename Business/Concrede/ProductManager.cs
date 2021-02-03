@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -10,9 +11,9 @@ namespace Business.Concrede
 {
     public class ProductManager : IProductService
     {
-        InMemoryProductDal _productDal;
+        IProductDal _productDal;
 
-        public ProductManager(InMemoryProductDal productDal)
+        public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
