@@ -9,6 +9,8 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : IProductDal
     {
+        //Entity Framework: ORM veritabanındaki tabloyu class gibi ilişkilendirir.
+        //NuGet : kodların ortak kullanıldığı alan
         public void Add(Product entity)
         {
             throw new NotImplementedException();
