@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Core.Data_Access.EntityFramework
             }
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public TEntity GetById(Expression<Func<TEntity, bool>> filter=null)
         {
             using (TContext context = new TContext())
             {
