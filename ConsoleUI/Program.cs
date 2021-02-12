@@ -11,10 +11,10 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //DTO: Data Transformation Object
-             ProductTest();
-            // CategoryTest();
-
+            //Data Transformation Object
+            ProductTest();
+            //IoC 
+            //CategoryTest();
         }
 
         private static void CategoryTest()
@@ -28,13 +28,23 @@ namespace ConsoleUI
 
         private static void ProductTest()
         {
-            //  ProductManager productManager = new ProductManager(new InMemoryProductDal());
             ProductManager productManager = new ProductManager(new EfProductDal());
-           foreach (var product in productManager.GetProductDetails())
-            //foreach (var product in productManager.GetByUnitPrice(20,100))
+
+            var result = productManager.GetProductDetails();
+
+            if (result.Success == true)
             {
-                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
         }
     }
 }

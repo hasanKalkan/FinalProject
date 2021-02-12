@@ -67,6 +67,11 @@ namespace DataAccess.Concrete.InMemory
             //parantez içine istediğimiz kadar koşul ekleyebiliriz.
         }
 
+        public Product GetById(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ProductDetailDto> GetProductDetails()
         {
             throw new NotImplementedException();
