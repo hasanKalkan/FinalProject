@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         [HttpGet("getById")]
         public IActionResult GetById(int id)
         {
-            //55
+            //
             var result = _productService.GetById(id);
             if (result.Success)
             {
