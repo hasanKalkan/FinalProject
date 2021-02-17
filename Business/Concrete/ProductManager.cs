@@ -29,24 +29,6 @@ namespace Business.Concrede
             //business codes
             //validation
 
-            //if (product.UnitPrice <= 0)
-            //{
-            //    return new ErrorResult(Messages.UnitPriveInvalid);
-            //}
-
-            //if (product.ProductName.Length < 2)
-            //{
-            //    //magic strings
-            //    return new ErrorResult(Messages.ProductNameInvalid);
-            //}
-
-            //var context = new ValidationContext<Product>(product);
-            //ProductValidator productValidator = new ProductValidator();
-            //var result = productValidator.Validate(context);
-            //if (!result.IsValid)
-            //{
-            //    throw new ValidationException(result.Errors);
-            //}
             ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
 
